@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://kirkcmapi3:8088/cmc.campuslink.webservices/GetListWebService.asmx?wsdl" docRef="http://kirkcmapi3:8088/cmc.campuslink.webservices/GetListWebService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://kirkcmapi3:8088/cmc.campuslink.webservices/GetListWebService.asmx" xmlns:q1="http://www.campusmgmt.com/Soa/Foundation/" binding="q1:GetListWebServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://kirkcmapi3:8088/cmc.campuslink.webservices/GetListWebService.asmx" xmlns:q2="http://www.campusmgmt.com/Soa/Foundation/" binding="q2:GetListWebServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

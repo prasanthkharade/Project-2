@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.campusmgmt.com/Soa/Foundation/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://www.campusmgmt.com/Soa/Foundation/MessageDefinition.xsd" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.campusmgmt.com/Soa/Foundation/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.campusmgmt.com/Soa/Foundation/">
+      <s:import namespace="http://www.campusmgmt.com/Soa/Foundation/MessageDefinition.xsd" />
+      <s:element name="GetList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:GetListRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:GetListResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestHeader" type="tns:RequestHeader" />
+      <s:complexType name="RequestHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Headers" type="tns:ArrayOfAnyType" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ResponseHeader" type="tns:ResponseHeader" />
+      <s:complexType name="ResponseHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Headers" type="tns:ArrayOfAnyType" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetUpdatableFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:GetUpdatableFieldsRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdatableFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:GetUpdatableFieldsResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemSetting">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:GetSystemSettingRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemSettingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:GetSystemSettingResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.campusmgmt.com/Soa/Foundation/MessageDefinition.xsd">
+      <s:element name="GetListRequest" type="s1:GetListRequest" />
+      <s:complexType name="GetListRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ListSimpleInMsgs" type="s1:ArrayOfListSimpleInMsg" />
+              <s:element minOccurs="0" maxOccurs="1" name="ListFilteredInMsgs" type="s1:ArrayOfListFilteredInMsg" />
+              <s:element minOccurs="0" maxOccurs="1" name="ListCustomInMsgs" type="s1:ArrayOfListCustomInMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GenericRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TokenId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfListSimpleInMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListSimpleInMsg" nillable="true" type="s1:ListSimpleInMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListSimpleInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericInMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ItemType" type="s1:EntityTypeSimple" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActiveOnly" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="CampusIds" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GenericInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MessageState" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GenericMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="-1" name="MessageId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomAttributes" type="s1:ArrayOfCustomAttributeMsg" />
+          <s:element minOccurs="0" maxOccurs="1" default="-1" name="CorrelationId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="SkipSemanticValidation" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomAttributeMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomAttributeMsg" nillable="true" type="s1:CustomAttributeMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomAttributeMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GenericOutMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MessageResult" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="OK" name="MessageStatus" type="s1:MessageStatusType" />
+              <s:element minOccurs="0" maxOccurs="1" name="MessageErrorCode" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="MessageStatusType">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="FailedValidation" />
+          <s:enumeration value="FailedExecution" />
+          <s:enumeration value="FailedAuthorization" />
+          <s:enumeration value="FailedOther" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ListCustomOutMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericOutMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ItemType" type="s1:EntityTypeCustom" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActiveOnly" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="CampusIds" type="s1:ArrayOfInt" />
+              <s:element minOccurs="0" maxOccurs="1" name="Items" type="s1:ArrayOfListCustomItemMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="EntityTypeCustom">
+        <s:restriction base="s:string">
+          <s:enumeration value="AreaOfStudy" />
+          <s:enumeration value="CashPayment" />
+          <s:enumeration value="CourseSection" />
+          <s:enumeration value="DegreeCourse" />
+          <s:enumeration value="EnrollmentAdvisor" />
+          <s:enumeration value="LeadEntranceTest" />
+          <s:enumeration value="PasswordProfile" />
+          <s:enumeration value="PostalCode" />
+          <s:enumeration value="ProspectPreviousEducation" />
+          <s:enumeration value="StartDate" />
+          <s:enumeration value="Staff" />
+          <s:enumeration value="Term" />
+          <s:enumeration value="ClassAttendance" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfListCustomItemMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListCustomItemMsg" nillable="true" type="s1:ListCustomItemMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListCustomItemMsg">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomAttributes" type="s1:CustomAttributeMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListFilteredOutMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericOutMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ItemType" type="s1:EntityTypeFiltered" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActiveOnly" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="CampusIds" type="s1:ArrayOfInt" />
+              <s:element minOccurs="0" maxOccurs="1" name="Items" type="s1:ArrayOfListFilteredItemMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="EntityTypeFiltered">
+        <s:restriction base="s:string">
+          <s:enumeration value="AcademicYear" />
+          <s:enumeration value="ActivityTemplate" />
+          <s:enumeration value="Advisor" />
+          <s:enumeration value="AgencyBranch" />
+          <s:enumeration value="BankAccount" />
+          <s:enumeration value="Campus" />
+          <s:enumeration value="CampusTCC" />
+          <s:enumeration value="CampusTIN" />
+          <s:enumeration value="CreditCard" />
+          <s:enumeration value="EmployerContact" />
+          <s:enumeration value="EmployerJob" />
+          <s:enumeration value="EnrolledProgram" />
+          <s:enumeration value="FinancialAidAward" />
+          <s:enumeration value="GradeLetter" />
+          <s:enumeration value="LeadInquiry" />
+          <s:enumeration value="Program" />
+          <s:enumeration value="ProgramVersion" />
+          <s:enumeration value="SchoolStatus" />
+          <s:enumeration value="StudentAcademicYear" />
+          <s:enumeration value="StudentAddress" />
+          <s:enumeration value="StudentBankAccount" />
+          <s:enumeration value="StudentLeaseHistory" />
+          <s:enumeration value="StudentSubsidiaryLedger" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfListFilteredItemMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListFilteredItemMsg" nillable="true" type="s1:ListFilteredItemMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListFilteredItemMsg">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListSimpleOutMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericOutMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ItemType" type="s1:EntityTypeSimple" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActiveOnly" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="CampusIds" type="s1:ArrayOfInt" />
+              <s:element minOccurs="0" maxOccurs="1" name="Items" type="s1:ArrayOfListSimpleItemMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="EntityTypeSimple">
+        <s:restriction base="s:string">
+          <s:enumeration value="AcademicAdvisor" />
+          <s:enumeration value="ActivityEventStatus" />
+          <s:enumeration value="ActivityEventType" />
+          <s:enumeration value="ActivityResult" />
+          <s:enumeration value="AddressType" />
+          <s:enumeration value="AdmissionsOfficer" />
+          <s:enumeration value="Agency" />
+          <s:enumeration value="AreaOfInterest" />
+          <s:enumeration value="AreaOfStudyType" />
+          <s:enumeration value="Bank" />
+          <s:enumeration value="BillingMethod" />
+          <s:enumeration value="CIPCode" />
+          <s:enumeration value="Citizenship" />
+          <s:enumeration value="CampusGroup" />
+          <s:enumeration value="CampusModule" />
+          <s:enumeration value="College" />
+          <s:enumeration value="Country" />
+          <s:enumeration value="County" />
+          <s:enumeration value="Course" />
+          <s:enumeration value="Employer" />
+          <s:enumeration value="EmploymentStatus" />
+          <s:enumeration value="Ethnicity" />
+          <s:enumeration value="ExtraCurricular" />
+          <s:enumeration value="FundSource" />
+          <s:enumeration value="Gender" />
+          <s:enumeration value="GradeLetter" />
+          <s:enumeration value="GradeLevel" />
+          <s:enumeration value="GradeScale" />
+          <s:enumeration value="HighSchool" />
+          <s:enumeration value="LeadCategory" />
+          <s:enumeration value="LeadSource" />
+          <s:enumeration value="LeadType" />
+          <s:enumeration value="LmsVendor" />
+          <s:enumeration value="Campus" />
+          <s:enumeration value="MaritalStatus" />
+          <s:enumeration value="Module" />
+          <s:enumeration value="Nationality" />
+          <s:enumeration value="PreviousEducation" />
+          <s:enumeration value="QuickLeadTemplate" />
+          <s:enumeration value="Shift" />
+          <s:enumeration value="StaffGroup" />
+          <s:enumeration value="State" />
+          <s:enumeration value="SubsidiaryLedgerType" />
+          <s:enumeration value="Suffix" />
+          <s:enumeration value="Term" />
+          <s:enumeration value="Test" />
+          <s:enumeration value="Title" />
+          <s:enumeration value="TransactionCode" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfListSimpleItemMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListSimpleItemMsg" nillable="true" type="s1:ListSimpleItemMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListSimpleItemMsg">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListCustomInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericInMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ItemType" type="s1:EntityTypeCustom" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActiveOnly" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="CampusIds" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ListFilteredInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericInMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ItemType" type="s1:EntityTypeFiltered" />
+              <s:element minOccurs="0" maxOccurs="1" default="" name="ItemTypeRoot" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActiveOnly" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="CampusIds" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfListFilteredInMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListFilteredInMsg" nillable="true" type="s1:ListFilteredInMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfListCustomInMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListCustomInMsg" nillable="true" type="s1:ListCustomInMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetListResponse" type="s1:GetListResponse" />
+      <s:complexType name="GetListResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SimpleLists" type="s1:ArrayOfListSimpleOutMsg" />
+              <s:element minOccurs="0" maxOccurs="1" name="FilteredLists" type="s1:ArrayOfListFilteredOutMsg" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomLists" type="s1:ArrayOfListCustomOutMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GenericResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s1:TrxStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrxResult" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TokenId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TrxStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="ErrorSQL" />
+          <s:enumeration value="ErrorBusinessLogic" />
+          <s:enumeration value="ErrorWebService" />
+          <s:enumeration value="ErrorArguments" />
+          <s:enumeration value="ErrorSecurity" />
+          <s:enumeration value="ErrorSystem" />
+          <s:enumeration value="ErrorMultiple" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfListSimpleOutMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListSimpleOutMsg" nillable="true" type="s1:ListSimpleOutMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfListFilteredOutMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListFilteredOutMsg" nillable="true" type="s1:ListFilteredOutMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfListCustomOutMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListCustomOutMsg" nillable="true" type="s1:ListCustomOutMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUpdatableFieldsRequest" type="s1:GetUpdatableFieldsRequest" />
+      <s:complexType name="GetUpdatableFieldsRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UpdateTransactions" type="s1:ArrayOfGetUpdatableFieldsInMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfGetUpdatableFieldsInMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetUpdatableFieldsInMsg" nillable="true" type="s1:GetUpdatableFieldsInMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetUpdatableFieldsInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericInMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TransactionName" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UpdateTransactionPropertyInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UpdateFields" type="s1:UpdateFieldInfo" />
+        </s:sequence>
+        <s:attribute name="PropertyName" type="s:string" />
+        <s:attribute name="PropertyTypeName" type="s:string" />
+      </s:complexType>
+      <s:complexType name="UpdateFieldInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldDataType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfGetUpdatableFieldsOutMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetUpdatableFieldsOutMsg" nillable="true" type="s1:GetUpdatableFieldsOutMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetUpdatableFieldsOutMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericOutMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="TransactionInMsgProperties" type="s1:UpdateTransactionPropertyInfo" />
+            </s:sequence>
+            <s:attribute name="TransactionName" type="s:string" />
+            <s:attribute name="InMsgTypeName" type="s:string" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetUpdatableFieldsResponse" type="s1:GetUpdatableFieldsResponse" />
+      <s:complexType name="GetUpdatableFieldsResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UpdateTransactions" type="s1:ArrayOfGetUpdatableFieldsOutMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetSystemSettingRequest" type="s1:GetSystemSettingRequest" />
+      <s:complexType name="GetSystemSettingRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SystemSettings" type="s1:ArrayOfGetSystemSettingInMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfGetSystemSettingInMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetSystemSettingInMsg" nillable="true" type="s1:GetSystemSettingInMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetSystemSettingInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericInMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="SystemSettingType" type="s1:SystemSettingType" />
+              <s:element minOccurs="0" maxOccurs="1" name="SystemSettingKey" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="SystemSettingType">
+        <s:restriction base="s:string">
+          <s:enumeration value="AuthenticationMode" />
+          <s:enumeration value="CorporationName" />
+          <s:enumeration value="CornerstoneIntegrationSetting" />
+          <s:enumeration value="DatabaseServerName" />
+          <s:enumeration value="DatabaseName" />
+          <s:enumeration value="OtherSystemSetting" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfGetSystemSettingOutMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetSystemSettingOutMsg" nillable="true" type="s1:GetSystemSettingOutMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetSystemSettingOutMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="SettingType" type="s1:SystemSettingType" />
+              <s:element minOccurs="0" maxOccurs="1" name="SystemSettingKey" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SystemSettingValue" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MessageResult" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="OK" name="MessageStatus" type="s1:MessageStatusType" />
+              <s:element minOccurs="0" maxOccurs="1" name="MessageErrorCode" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetSystemSettingResponse" type="s1:GetSystemSettingResponse" />
+      <s:complexType name="GetSystemSettingResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SystemSettings" type="s1:ArrayOfGetSystemSettingOutMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetList" />
+  </wsdl:message>
+  <wsdl:message name="GetListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListRequestHeader">
+    <wsdl:part name="RequestHeader" element="tns:RequestHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetListResponseHeader">
+    <wsdl:part name="ResponseHeader" element="tns:ResponseHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatableFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUpdatableFields" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatableFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUpdatableFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatableFieldsRequestHeader">
+    <wsdl:part name="RequestHeader" element="tns:RequestHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatableFieldsResponseHeader">
+    <wsdl:part name="ResponseHeader" element="tns:ResponseHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSettingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemSetting" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSettingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSettingRequestHeader">
+    <wsdl:part name="RequestHeader" element="tns:RequestHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSettingResponseHeader">
+    <wsdl:part name="ResponseHeader" element="tns:ResponseHeader" />
+  </wsdl:message>
+  <wsdl:portType name="GetListWebServiceSoap">
+    <wsdl:operation name="GetList">
+      <wsdl:input message="tns:GetListSoapIn" />
+      <wsdl:output message="tns:GetListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatableFields">
+      <wsdl:input message="tns:GetUpdatableFieldsSoapIn" />
+      <wsdl:output message="tns:GetUpdatableFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSetting">
+      <wsdl:input message="tns:GetSystemSettingSoapIn" />
+      <wsdl:output message="tns:GetSystemSettingSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetListWebServiceSoap" type="tns:GetListWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetList">
+      <soap:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/GetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetListRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetListResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatableFields">
+      <soap:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/GetUpdatableFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUpdatableFieldsRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUpdatableFieldsResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSetting">
+      <soap:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/GetSystemSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemSettingRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemSettingResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GetListWebServiceSoap12" type="tns:GetListWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetList">
+      <soap12:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/GetList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetListRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetListResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatableFields">
+      <soap12:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/GetUpdatableFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUpdatableFieldsRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUpdatableFieldsResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSetting">
+      <soap12:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/GetSystemSetting" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemSettingRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemSettingResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetListWebService">
+    <wsdl:port name="GetListWebServiceSoap" binding="tns:GetListWebServiceSoap">
+      <soap:address location="http://kirkcmapi3:8088/cmc.campuslink.webservices/GetListWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GetListWebServiceSoap12" binding="tns:GetListWebServiceSoap12">
+      <soap12:address location="http://kirkcmapi3:8088/cmc.campuslink.webservices/GetListWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

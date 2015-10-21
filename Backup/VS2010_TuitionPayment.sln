@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VS2010_TuitionPayment", "VS2010_TuitionPayment.csproj", "{FDAFB2E9-A66C-44F2-BB6F-4029FC1ECB44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDAFB2E9-A66C-44F2-BB6F-4029FC1ECB44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDAFB2E9-A66C-44F2-BB6F-4029FC1ECB44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDAFB2E9-A66C-44F2-BB6F-4029FC1ECB44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDAFB2E9-A66C-44F2-BB6F-4029FC1ECB44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.campusmgmt.com/Soa/Foundation/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://www.campusmgmt.com/Soa/Foundation/MessageDefinition.xsd" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.campusmgmt.com/Soa/Foundation/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.campusmgmt.com/Soa/Foundation/">
+      <s:import namespace="http://www.campusmgmt.com/Soa/Foundation/MessageDefinition.xsd" />
+      <s:element name="PostActivity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:PostActivityRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostActivityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:PostActivityResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RequestHeader" type="tns:RequestHeader" />
+      <s:complexType name="RequestHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Headers" type="tns:ArrayOfAnyType" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ResponseHeader" type="tns:ResponseHeader" />
+      <s:complexType name="ResponseHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Headers" type="tns:ArrayOfAnyType" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="PostActivityBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:PostActivityRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostActivityBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:PostActivityResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.campusmgmt.com/Soa/Foundation/MessageDefinition.xsd">
+      <s:element name="PostActivityRequest" type="s1:PostActivityRequest" />
+      <s:complexType name="PostActivityRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AddNewActivities" type="s1:ArrayOfAddNewActivityInMsg" />
+              <s:element minOccurs="0" maxOccurs="1" name="EditCloseActivities" type="s1:ArrayOfEditCloseActivityInMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GenericRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TokenId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAddNewActivityInMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AddNewActivityInMsg" nillable="true" type="s1:AddNewActivityInMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddNewActivityInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityInMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ActivityTemplateId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="StudentId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="EnrolledProgramId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="StudentInquiryId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="EmployerId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="EmployerJobId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="EmployerContactId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="HousingStudentLeaseId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="OrganizationId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="OrganizationContactId" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ActivityInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericInMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="ActivityStatusId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="1900-01-01T00:00:00" name="StartTime" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" default="1900-01-01T00:00:00" name="EndTime" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="AssignedStaffId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="1900-01-01T00:00:00" name="DueDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="Undefined" name="Priority" type="s1:ActivityPriorityType" />
+              <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="" name="EmailSubject" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="C" name="SourceSystem" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="false" name="CrmSuppressFlag" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GenericInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MessageState" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GenericMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" default="-1" name="MessageId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomAttributes" type="s1:ArrayOfCustomAttributeMsg" />
+          <s:element minOccurs="0" maxOccurs="1" default="-1" name="CorrelationId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" default="false" name="SkipSemanticValidation" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomAttributeMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomAttributeMsg" nillable="true" type="s1:CustomAttributeMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomAttributeMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GenericOutMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MessageResult" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" default="OK" name="MessageStatus" type="s1:MessageStatusType" />
+              <s:element minOccurs="0" maxOccurs="1" name="MessageErrorCode" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="MessageStatusType">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="FailedValidation" />
+          <s:enumeration value="FailedExecution" />
+          <s:enumeration value="FailedAuthorization" />
+          <s:enumeration value="FailedOther" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="EditCloseActivityOutMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericOutMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="AddNewActivityOutMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericOutMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ActivityId" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ActivityPriorityType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Undefined" />
+          <s:enumeration value="Low" />
+          <s:enumeration value="Normal" />
+          <s:enumeration value="High" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="EditCloseActivityInMsg">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ActivityInMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ActivityId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="ActivityResultId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="1900-01-01T00:00:00" name="DateCompleted" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="CompletedByStaffId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="OrganizationId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" default="-1" name="OrganizationContactId" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfEditCloseActivityInMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EditCloseActivityInMsg" nillable="true" type="s1:EditCloseActivityInMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PostActivityResponse" type="s1:PostActivityResponse" />
+      <s:complexType name="PostActivityResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:GenericResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AddNewActivities" type="s1:ArrayOfAddNewActivityOutMsg" />
+              <s:element minOccurs="0" maxOccurs="1" name="EditCloseActivities" type="s1:ArrayOfEditCloseActivityOutMsg" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GenericResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s1:TrxStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrxResult" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TokenId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TrxStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="ErrorSQL" />
+          <s:enumeration value="ErrorBusinessLogic" />
+          <s:enumeration value="ErrorWebService" />
+          <s:enumeration value="ErrorArguments" />
+          <s:enumeration value="ErrorSecurity" />
+          <s:enumeration value="ErrorSystem" />
+          <s:enumeration value="ErrorMultiple" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfAddNewActivityOutMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AddNewActivityOutMsg" nillable="true" type="s1:AddNewActivityOutMsg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEditCloseActivityOutMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EditCloseActivityOutMsg" nillable="true" type="s1:EditCloseActivityOutMsg" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PostActivitySoapIn">
+    <wsdl:part name="parameters" element="tns:PostActivity" />
+  </wsdl:message>
+  <wsdl:message name="PostActivitySoapOut">
+    <wsdl:part name="parameters" element="tns:PostActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostActivityRequestHeader">
+    <wsdl:part name="RequestHeader" element="tns:RequestHeader" />
+  </wsdl:message>
+  <wsdl:message name="PostActivityResponseHeader">
+    <wsdl:part name="ResponseHeader" element="tns:ResponseHeader" />
+  </wsdl:message>
+  <wsdl:message name="PostActivityBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:PostActivityBatch" />
+  </wsdl:message>
+  <wsdl:message name="PostActivityBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:PostActivityBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostActivityBatchRequestHeader">
+    <wsdl:part name="RequestHeader" element="tns:RequestHeader" />
+  </wsdl:message>
+  <wsdl:message name="PostActivityBatchResponseHeader">
+    <wsdl:part name="ResponseHeader" element="tns:ResponseHeader" />
+  </wsdl:message>
+  <wsdl:portType name="ActivityWebServiceSoap">
+    <wsdl:operation name="PostActivity">
+      <wsdl:input message="tns:PostActivitySoapIn" />
+      <wsdl:output message="tns:PostActivitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostActivityBatch">
+      <wsdl:input message="tns:PostActivityBatchSoapIn" />
+      <wsdl:output message="tns:PostActivityBatchSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ActivityWebServiceSoap" type="tns:ActivityWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PostActivity">
+      <soap:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/PostActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PostActivityRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:PostActivityResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostActivityBatch">
+      <soap:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/PostActivityBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PostActivityBatchRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:PostActivityBatchResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ActivityWebServiceSoap12" type="tns:ActivityWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PostActivity">
+      <soap12:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/PostActivity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PostActivityRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PostActivityResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostActivityBatch">
+      <soap12:operation soapAction="http://www.campusmgmt.com/Soa/Foundation/PostActivityBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PostActivityBatchRequestHeader" part="RequestHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PostActivityBatchResponseHeader" part="ResponseHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ActivityWebService">
+    <wsdl:port name="ActivityWebServiceSoap" binding="tns:ActivityWebServiceSoap">
+      <soap:address location="http://kirkcmapi3:8088/cmc.campuslink.webservices/ActivityWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ActivityWebServiceSoap12" binding="tns:ActivityWebServiceSoap12">
+      <soap12:address location="http://kirkcmapi3:8088/cmc.campuslink.webservices/ActivityWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

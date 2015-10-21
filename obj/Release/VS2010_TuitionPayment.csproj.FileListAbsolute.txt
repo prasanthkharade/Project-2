@@ -1,0 +1,6 @@
+C:\Users\kchamblee\Documents\Visual Studio 2010\Projects\TuitionCCPmt\bin\VS2010_TuitionPayment.dll
+C:\Users\kchamblee\Documents\Visual Studio 2010\Projects\TuitionCCPmt\bin\VS2010_TuitionPayment.XmlSerializers.dll
+C:\Users\kchamblee\Documents\Visual Studio 2010\Projects\TuitionCCPmt\bin\VS2010_TuitionPayment.pdb
+C:\Users\kchamblee\Documents\Visual Studio 2010\Projects\TuitionCCPmt\obj\Release\VS2010_TuitionPayment.dll
+C:\Users\kchamblee\Documents\Visual Studio 2010\Projects\TuitionCCPmt\obj\Release\VS2010_TuitionPayment.pdb
+C:\Users\kchamblee\Documents\Visual Studio 2010\Projects\TuitionCCPmt\obj\Release\VS2010_TuitionPayment.XmlSerializers.dll

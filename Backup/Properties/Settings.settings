@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VS2010_TuitionPayment.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="VS2010_TuitionPayment_Authentication_Authentication" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://kirkcmapi3:8088/cmc.campuslink.webservices.security/Authentication.asmx</Value>
+    </Setting>
+    <Setting Name="VS2010_TuitionPayment_Student_StudentWebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://kirkcmapi3:8088/cmc.campuslink.webservices/StudentWebService.asmx</Value>
+    </Setting>
+    <Setting Name="VS2010_TuitionPayment_Activity_ActivityWebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://kirkcmapi3:8088/cmc.campuslink.webservices/ActivityWebService.asmx</Value>
+    </Setting>
+    <Setting Name="VS2010_TuitionPayment_GetList_GetListWebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://kirkcmapi3:8088/cmc.campuslink.webservices/GetListWebService.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
